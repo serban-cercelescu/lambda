@@ -1,0 +1,23 @@
+$ZERO = \f.\x.x
+$SUCC = \n.\f.\x. f (n f x)
+$PRED = \n.\f.\x. n (\g.\h. h (g f)) (\u.x) (\u.u)
+$PLUS = \m.\n.\f.\x. m f (n f x)
+$TIMES = \m.\n.\f.\x. m (n f) x
+$ONE = $SUCC $ZERO
+$TWO = $SUCC $ONE
+$THREE = $PLUS $ONE $TWO
+$SIX = $TIMES $TWO $THREE
+$TEN = $SUCC ($PLUS $THREE $SIX)
+
+
+$PRED ($PRED ($PRED $TEN))
+
+
+$Y = \f.(\x.f (x x)) (\x.f (x x))
+$TRUE = \x.\y.x
+$FALSE = \x.\y.y
+$ISZERO = \n. n (\x. $FALSE) $TRUE
+$IF = \p.\a.\b. p a b
+$FACT = $Y (\f.\n. $IF ($ISZERO n) $ONE ($TIMES n (f ($PRED n))))
+
+$FACT $SIX
